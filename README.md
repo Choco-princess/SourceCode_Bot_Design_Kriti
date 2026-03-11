@@ -105,13 +105,6 @@ python app.py
 
 ## How It Works
 
-### Live Feed
-
-`vision.py` runs a background thread that connects to the ESP32-CAM's MJPEG
-stream, parses raw JPEG frames (SOI/EOI markers), and stores the latest frame
-in memory. The dashboard serves this directly via `/video_feed` — zero
-decode/re-encode overhead.
-
 ### Capture & Detect (Dashboard Button)
 
 1. User clicks **INITIATE CAPTURE & DETECT**
@@ -148,31 +141,11 @@ Arduino                              Pi
 
 ### 1. Image Classifier (`detectors/classifier.py`)
 
-- **Model:** MobileNetV2 fine-tuned, TFLite float16 (~3 MB)
-- **Input:** 224×224 RGB, normalized to [0,1]
-- **Pre-processing:** CLAHE contrast + bilateral denoise
-- **Classes (13):** Brand logos (Apple, Keus, Maybach, Tesla), Furniture
-  (Chair, Dining Table), Parcel, Pets (Cat, Dog), Smart switch (Smart Console),
-  Vehicle (Bicycle, Car, Motorbike)
-
 ### 2. QR Code Detector (`detectors/qr_detector.py`)
-
-- **Engine:** pyzbar (libzbar), falls back to OpenCV `QRCodeDetector`
-- **3-pass strategy:** raw grayscale → CLAHE+sharpened → adaptive threshold
 
 ### 3. Face Recognition (`detectors/face_detector.py`)
 
-- **Detector:** OpenCV YuNet (ONNX, ~230 KB)
-- **Recogniser:** OpenCV SFace (ONNX, ~37 MB) — 128-d feature vectors
-- **Matching:** Cosine similarity ≥ 0.35 AND L2 norm ≤ 1.20
-- **No dlib needed** — pure OpenCV, models auto-download on first run
-- **Setup:** place `Person_Name.jpg` in `known_faces/`
-
 ### 4. Number Plate ANPR (`detectors/number_plate.py`)
-
-- **Localization:** Blackhat morphology → Scharr gradient → contour filtering
-- **OCR:** RapidOCR (PaddleOCR ONNX, primary) / Tesseract (fallback)
-- **Patterns:** Indian standard (XX 00 XX 0000) and BH-series (00 BH 0000 X)
 
 ---
 
@@ -290,3 +263,4 @@ Update `ESP32_CAM_IP` in `config.py`.
 `imutils`, `scikit-image`
 
 **Training only (PC):** `tensorflow` ≥ 2.13, `Pillow`
+
