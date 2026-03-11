@@ -1,0 +1,38 @@
+# =============================================================================
+# Rover Pi — Python Dependencies
+# =============================================================================
+# Install on Raspberry Pi:
+#   sudo apt update
+#   sudo apt install cmake libboost-all-dev libzbar0 tesseract-ocr
+#   pip install -r requirements.txt
+# =============================================================================
+
+# Web server
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# HTTP client — fetch frames from ESP32-CAM
+requests>=2.31
+
+# Computer vision
+opencv-python-headless>=4.8
+numpy>=1.24
+
+# Serial communication with Arduino
+pyserial>=3.5
+
+# TFLite inference (lightweight on Pi)
+# ai-edge-litert is Google's replacement for the deprecated tflite-runtime
+ai-edge-litert>=1.0
+
+# QR code decoding
+pyzbar>=0.1.9
+
+# Number plate OCR — RapidOCR primary, Tesseract fallback
+rapidocr-onnxruntime>=1.2
+pytesseract>=0.3.10
+imutils>=0.5.4
+scikit-image>=0.21
+
+# Face recognition — uses OpenCV's built-in YuNet + SFace (no dlib needed)
+# Models auto-download on first run (~37 MB)

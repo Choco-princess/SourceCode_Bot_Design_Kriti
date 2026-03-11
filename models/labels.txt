@@ -1,0 +1,13 @@
+Brand logo/Apple
+Brand logo/Keus
+Brand logo/Maybach
+Brand logo/Tesla
+Furniture/Chair
+Furniture/Dining Table
+Parcel/Parcel
+Pets/Cat
+Pets/Dog
+Smart switch/Smart Console
+Vehicle/Bicycle
+Vehicle/Car
+Vehicle/Motorbike

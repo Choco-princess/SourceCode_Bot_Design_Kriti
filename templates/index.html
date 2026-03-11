@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rover Dashboard // SYSTEM_UI</title>
+    <!-- Sci-Fi Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=4">
+</head>
+<body>
+    <!-- Decorative scanline overlay -->
+    <div class="scanlines"></div>
+
+    <header>
+        <h1>ROBOKRITI // ROVER_CORE_LINK</h1>
+        <div id="status-badge" class="badge badge-idle">SYS_IDLE</div>
+    </header>
+
+    <main>
+        <!-- ─── Left: Camera Feed ─────────────────────────── -->
+        <section class="panel camera-panel">
+            <h2>LIVE_OPTICAL_FEED</h2>
+            <div class="video-wrapper">
+                <div class="hud-crosshair"></div>
+                <img id="video-feed" src="/video_feed" alt="Camera Feed">
+            </div>
+            <button id="btn-capture" class="btn btn-capture" onclick="capturePhoto()">
+                INITIATE CAPTURE &amp; DETECT
+            </button>
+        </section>
+
+        <!-- ─── Right: Results & Controls ─────────────────── -->
+        <section class="panel info-panel">
+
+            <!-- Detection Results -->
+            <div class="card results-card">
+                <h2>ANALYSIS_RESULTS</h2>
+                <!-- Inline capture thumbnail (always visible after capture) -->
+                <div id="capture-inline" class="capture-inline" style="display:none;">
+                    <img id="captured-image" alt="Captured" onclick="openLightbox()" title="Click to expand">
+                    <button class="btn btn-view-capture" onclick="openLightbox()">VIEW_CAPTURE</button>
+                </div>
+                <div id="results-container" class="results-container">
+                    <p class="results-placeholder">AWAITING CAPTURE TRIGGER...</p>
+                </div>
+            </div>
+
+            <!-- Run Controls -->
+            <div class="card controls-card">
+                <h2>EXECUTION_CONTROLS</h2>
+                <div class="controls-row">
+                    <button id="btn-start" class="btn btn-start" onclick="startRun()">START_SEQ</button>
+                    <button id="btn-stop" class="btn btn-stop" onclick="stopRun()" disabled>HALT_SEQ</button>
+                </div>
+                <div class="timer-row">
+                    <span class="timer-label">UPTIME:</span>
+                    <span id="timer" class="timer-display">00:00</span>
+                </div>
+            </div>
+
+            <!-- Detection Log -->
+            <div class="card log-card">
+                <h2>SYSTEM_LOG</h2>
+                <ol id="detection-log">
+                    <li class="log-empty">NO_DATA_AVAILABLE</li>
+                </ol>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display:none;">
+        <div class="spinner"></div>
+        <p>PROCESSING_ML_ALGORITHMS...</p>
+    </div>
+
+    <!-- Lightbox for expanded captured image -->
+    <div id="lightbox" class="lightbox" style="display:none;" onclick="closeLightbox()">
+        <div class="lightbox-header">
+            <span>CAPTURED_DATA // EXPANDED_VIEW</span>
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        </div>
+        <img id="lightbox-img" alt="Expanded capture">
+    </div>
+
+    <script src="/static/script.js?v=4"></script>
+</body>
+</html>

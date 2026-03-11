@@ -1,0 +1,41 @@
+# ── Python ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environments ───────────────────────────────
+venv/
+.venv/
+env/
+
+# ── IDE / Editor ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── OS files ───────────────────────────────────────────
+.DS_Store
+Desktop.ini
+
+# ── Large model files (optional — uncomment to track) ──
+# Uncomment these lines if you do NOT want to track models in git:
+# models/*.onnx
+# models/*.tflite
+
+# ── Training outputs ──────────────────────────────────
+train/logs/
+train/checkpoints/
+*.h5
+*.keras
+
+# ── Dataset (never commit training data) ──────────────
+dataset/
+merged_dataset/
